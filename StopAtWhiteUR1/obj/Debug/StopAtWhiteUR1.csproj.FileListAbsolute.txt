@@ -1,0 +1,58 @@
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe.config
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.pdb
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.dll
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.UI.dll
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.Util.dll
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\ZedGraph.dll
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.xml
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.UI.xml
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.Util.xml
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Form1.resources
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Properties.Resources.resources
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csproj.GenerateResource.Cache
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.exe
+c:\users\lrodrigue\documents\visual studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.pdb
+C:\Users\lrodrigue\Documents\Visual Studio 2013\Projects\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csprojResolveAssemblyReference.cache
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe.config
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.exe
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.pdb
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.pdb
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\ZedGraph.dll
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.xml
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.UI.xml
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.Util.xml
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csprojResolveAssemblyReference.cache
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Form1.resources
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Properties.Resources.resources
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\STOP AT WHITE CODE\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csproj.GenerateResource.Cache
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe.config
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.exe
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.pdb
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.pdb
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\ZedGraph.dll
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.xml
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.UI.xml
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.Util.xml
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csprojResolveAssemblyReference.cache
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Form1.resources
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Properties.Resources.resources
+C:\Users\jyudasz\Desktop\Robotics 1 LAB\TERM PROJECT\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csproj.GenerateResource.Cache
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe.config
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.exe
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.pdb
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.exe
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\StopAtWhiteUR1.pdb
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.dll
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.UI.dll
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.Util.dll
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\ZedGraph.dll
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.xml
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.CV.UI.xml
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\bin\Debug\Emgu.Util.xml
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csprojResolveAssemblyReference.cache
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Form1.resources
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.Properties.Resources.resources
+C:\Users\mdimilia\Desktop\StopAtWhiteUR1\StopAtWhiteUR1\obj\Debug\StopAtWhiteUR1.csproj.GenerateResource.Cache
