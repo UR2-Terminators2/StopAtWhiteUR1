@@ -37,13 +37,13 @@ namespace StopAtWhiteUR1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            serPort = new SerialPort(ComPort);
-            serPort.BaudRate = 9600;
-            serPort.DataBits = 8;
-            serPort.Parity = Parity.None;
-            serPort.StopBits = StopBits.One;
-            serPort.Open();
-            serPort.DataReceived += new SerialDataReceivedEventHandler(serPort_DataReceived);
+            //serPort = new SerialPort(ComPort);
+            //serPort.BaudRate = 9600;
+            //serPort.DataBits = 8;
+            //serPort.Parity = Parity.None;
+            //serPort.StopBits = StopBits.One;
+            //serPort.Open();
+            //serPort.DataReceived += new SerialDataReceivedEventHandler(serPort_DataReceived);
             _capture = new Capture();
             _capture.ImageGrabbed += Display_Captured;
             _capture.Start();
@@ -67,26 +67,48 @@ namespace StopAtWhiteUR1
 
         void Display_Captured(object sender, EventArgs e)
         {
-            Image<Gray, Byte> gi = _capture.RetrieveGrayFrame().Resize(imageBox1.Width, imageBox1.Height, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
-            Image<Gray, Byte> gray_frame = _capture.RetrieveGrayFrame().Resize(imageBox1.Width, imageBox1.Height, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
-            Image<Gray, Byte> bw_frame = gray_frame.ThresholdBinary(new Gray(threshold), new Gray(255));
-            imageBox1.Image = bw_frame;  // CheckWhitePix(bw_frame);
-            gi = gi.ThresholdBinary(new Gray(threshold), new Gray(255));
-            imageBox1.Image = gi;
+            //Image<Gray, Byte> gi = _capture.RetrieveGrayFrame().Resize(imageBox1.Width, imageBox1.Height, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
+            //Image<Gray, Byte> gray_frame = _capture.RetrieveGrayFrame().Resize(imageBox1.Width, imageBox1.Height, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
+            //Image<Gray, Byte> bw_frame = gray_frame.ThresholdBinary(new Gray(threshold), new Gray(255));
+
+            Image<Gray, byte> bw_image = _capture.RetrieveGrayFrame().Resize(imageBox1.Width, imageBox1.Height, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
+            bw_image = bw_image.ThresholdBinary(new Gray(threshold), new Gray(255)); // if pix > bw_threshold, then 255; Otherwise 0
+            Image<Bgr, byte> color_image = _capture.RetrieveBgrFrame().Resize(imageBox1.Width, imageBox1.Height, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
+            Image<Bgr, Byte> bwr_image = bw_image.Convert<Bgr, Byte>(); // color image
+            for (int h = 0; h < color_image.Height; h++)
+            {
+                for (int w = 0; w < color_image.Width; w++)
+                { // e.g. 49 40 178
+                    // Can we have different logic? Yes. Topics in AI and UR4
+                    if (color_image.Data[h, w, 2] > 1.5 * (color_image.Data[h, w, 1] + color_image.Data[h, w, 0]))
+                    {
+                        bwr_image.Data[h, w, 0] = 0; // B
+                        bwr_image.Data[h, w, 1] = 0; // G
+                        bwr_image.Data[h, w, 2] = 255; // R
+                    }
+                }
+            }
+            imageBox1.Image = bwr_image;
 
             // Setting all start Values to Zero
             int num_white_left = 0; 
             int num_white_middle = 0;
             int num_white_right = 0;
             int percent_white = 0;
+            int num_red = 0;
+            int percent_red = 0;
             int segmentSize = imageBox1.Width / 3;
             int segmentArea = segmentSize * imageBox1.Height;
 
-            for (int h = 0; h < imageBox1.Size.Height / 3; h++)
+            for (int h = 0; h < imageBox1.Size.Height; h++)
             {
                 for (int w = 0; w < imageBox1.Size.Width; w++)
                 {
-                    if (gi.Data[h, w, 0] == 255) //-- Grayscale image
+                    if (bwr_image.Data[h, w, 2] == 255 && bwr_image.Data[h, w, 0] == 0 && bwr_image.Data[h, w, 1] == 0) //-- Grayscale image
+                    {
+                        num_red++;
+                    }
+                    if (bw_image.Data[h, w, 0] == 255) //-- Grayscale image
                     {
                         if (w < segmentSize) //Shows Amount of Pixels in left 3rd
                         {
@@ -103,10 +125,13 @@ namespace StopAtWhiteUR1
                     }
                 }
             }
+            percent_red = num_red * 100 / totNumPixels;
             percent_white = (num_white_left + num_white_middle + num_white_right) * 100 / totNumPixels;
 
             dispStr(label1, "L: " + num_white_left.ToString() + "  " + "M: " + num_white_middle.ToString()
-                + "  " + "R: " + num_white_right.ToString() + "  " + "%White: " + percent_white.ToString());
+                + "  " + "R: " + num_white_right.ToString() + "  " + "%White: " + percent_white.ToString()
+                + "  " + "%Red: " + percent_red.ToString());
+
             // Sgowing the comands on the output screen 
 
             if (s == State.enabled)
@@ -137,8 +162,8 @@ namespace StopAtWhiteUR1
                     dispStr(label2, "" + GoStraight.ToString()); // output to go straight
                     serPort.Write("S");//sends S to atmel 
                 }  
-                //Stop at end
-                if (num_white_middle > (segmentArea * 0.25))
+                //Stop at red
+                if (percent_red > 25)
                 {
                     dispStr(label2, "" + Stop.ToString());
                     serPort.Write("X");
