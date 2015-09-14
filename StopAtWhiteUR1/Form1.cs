@@ -37,13 +37,13 @@ namespace StopAtWhiteUR1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //serPort = new SerialPort(ComPort);
-            //serPort.BaudRate = 9600;
-            //serPort.DataBits = 8;
-            //serPort.Parity = Parity.None;
-            //serPort.StopBits = StopBits.One;
-            //serPort.Open();
-            //serPort.DataReceived += new SerialDataReceivedEventHandler(serPort_DataReceived);
+            serPort = new SerialPort(ComPort);
+            serPort.BaudRate = 9600;
+            serPort.DataBits = 8;
+            serPort.Parity = Parity.None;
+            serPort.StopBits = StopBits.One;
+            serPort.Open();
+            serPort.DataReceived += new SerialDataReceivedEventHandler(serPort_DataReceived);
             _capture = new Capture();
             _capture.ImageGrabbed += Display_Captured;
             _capture.Start();
@@ -80,7 +80,7 @@ namespace StopAtWhiteUR1
                 for (int w = 0; w < color_image.Width; w++)
                 { // e.g. 49 40 178
                     // Can we have different logic? Yes. Topics in AI and UR4
-                    if (color_image.Data[h, w, 2] > 1.5 * (color_image.Data[h, w, 1] + color_image.Data[h, w, 0]))
+                    if (color_image.Data[h, w, 2] > .75 * (color_image.Data[h, w, 1] + color_image.Data[h, w, 0]))
                     {
                         bwr_image.Data[h, w, 0] = 0; // B
                         bwr_image.Data[h, w, 1] = 0; // G
@@ -163,7 +163,7 @@ namespace StopAtWhiteUR1
                     serPort.Write("S");//sends S to atmel 
                 }  
                 //Stop at red
-                if (percent_red > 25)
+                if (percent_red > 5)
                 {
                     dispStr(label2, "" + Stop.ToString());
                     serPort.Write("X");
