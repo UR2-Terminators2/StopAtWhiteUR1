@@ -1,8 +1,8 @@
 ﻿/***********************************************
  * 
- * Creater: Joey Yudasz 
- * Date: 4/21/2015
- * Class: UR1
+ * Terminators 2
+ * Date: 10/1/2015
+ * Class: UR2
  * TERM PROJECT ( LINE FOLLOW )
  * 
  ***********************************************/
@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using System.Collections.Generic;
 
 namespace StopAtWhiteUR1
 {
@@ -20,7 +21,7 @@ namespace StopAtWhiteUR1
         enum State { enabled, disabled };
         State s = State.disabled;
         SerialPort serPort;
-        string ComPort = "COM4"; // Port on laptop
+        string ComPort = "COM5"; // Port on laptop
         delegate void displayStringDelegate(Label l, String s);
         Capture _capture = null;
         int threshold = 125;
@@ -37,13 +38,13 @@ namespace StopAtWhiteUR1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            serPort = new SerialPort(ComPort);
-            serPort.BaudRate = 9600;
-            serPort.DataBits = 8;
-            serPort.Parity = Parity.None;
-            serPort.StopBits = StopBits.One;
-            serPort.Open();
-            serPort.DataReceived += new SerialDataReceivedEventHandler(serPort_DataReceived);
+            //serPort = new SerialPort(ComPort);
+            //serPort.BaudRate = 9600;
+            //serPort.DataBits = 8;
+            //serPort.Parity = Parity.None;
+            //serPort.StopBits = StopBits.One;
+            //serPort.Open();
+            //serPort.DataReceived += new SerialDataReceivedEventHandler(serPort_DataReceived);
             _capture = new Capture();
             _capture.ImageGrabbed += Display_Captured;
             _capture.Start();
@@ -80,7 +81,7 @@ namespace StopAtWhiteUR1
                 for (int w = 0; w < color_image.Width; w++)
                 { // e.g. 49 40 178
                     // Can we have different logic? Yes. Topics in AI and UR4
-                    if (color_image.Data[h, w, 2] > .75 * (color_image.Data[h, w, 1] + color_image.Data[h, w, 0]))
+                    if (color_image.Data[h, w, 2] > 1 * (color_image.Data[h, w, 1] + color_image.Data[h, w, 0]))
                     {
                         bwr_image.Data[h, w, 0] = 0; // B
                         bwr_image.Data[h, w, 1] = 0; // G
@@ -88,7 +89,23 @@ namespace StopAtWhiteUR1
                     }
                 }
             }
-            imageBox1.Image = bwr_image;
+
+            for (int h = 0; h < color_image.Height; h++)
+            {
+                for (int w = 0; w < color_image.Width; w++)
+                { // e.g. 49 40 178
+                    // Can we have different logic? Yes. Topics in AI and UR4
+                    if (color_image.Data[h, w, 1] > 1 * (color_image.Data[h, w, 2] + color_image.Data[h, w, 0]))
+                    {
+                        bw_image.Data[h, w, 0] = 0;
+                        //bwr_image.Data[h, w, 0] = 0; // B
+                        //bwr_image.Data[h, w, 1] = 0; // G
+                        //bwr_image.Data[h, w, 2] = 0; // R
+                    }
+                }
+            }
+
+            
 
             // Setting all start Values to Zero
             int num_white_left = 0; 
@@ -134,6 +151,86 @@ namespace StopAtWhiteUR1
 
             // Sgowing the comands on the output screen 
 
+            Image<Gray, Byte> gray2 = null;
+            Image<Gray, Byte> gry = bwr_image.Convert<Gray, Byte>();
+            gray2 = gry.Canny(100, 255);
+            //imageBox2.Image = gray2.Resize(imageBox2.Width, imageBox2.Height, Emgu.CV.CvEnum.INTER.CV_INTER_LINEAR);
+
+            Image<Gray, Byte> gray = gray2.Convert<Gray, Byte>().PyrDown().PyrUp(); // to filter out noise
+            Image<Gray, Byte> cannyEdges = gray.Canny(100, 255);
+            List<Triangle2DF> triangleList = new List<Triangle2DF>();
+            //List<MCvBox2D> boxList = new List<MCvBox2D>();
+            // a contour: list of pixels that can represent a curve
+            using (MemStorage storage = new MemStorage()) //allocate storage for contour approximation
+            {
+                for (Contour<Point> contours = cannyEdges.FindContours(); contours != null; contours = contours.HNext)
+                {
+                    Contour<Point> currentPolygon = contours.ApproxPoly(contours.Perimeter * 0.1, storage); // adjust here
+                    if (contours.Area > 250) //only consider contours with area greater than 250
+                    //if (currentPolygon.Area > 250) //only consider polygon with area greater than 250
+                    {
+                        if (currentPolygon.Total == 3) //The contour has 3 vertices, it is a triangle
+                        {
+                            Point[] pts = currentPolygon.ToArray();
+                            triangleList.Add(new Triangle2DF(pts[0], pts[1], pts[2]));
+                        }
+                        //else if (currentPolygon.Total == 4) //The contour has 4 vertices.
+                        //{
+                        //    // determine if all the angles in the contour are within the range of [80, 100], close to 90 degrees 
+                        //    bool isRectangle = true;
+                        //    Point[] pts = currentPolygon.ToArray();
+                        //    LineSegment2D[] edges = PointCollection.PolyLine(pts, true);
+
+                        //    for (int i = 0; i < edges.Length; i++)
+                        //    {
+                        //        double angle = Math.Abs(
+                        //           edges[(i + 1) % edges.Length].GetExteriorAngleDegree(edges[i]));
+                        //        if (angle < 80 || angle > 100)
+                        //        {
+                        //            isRectangle = false;
+                        //            break;
+                        //        }
+                        //    }
+                        //    if (isRectangle) boxList.Add(currentPolygon.GetMinAreaRect());
+                        //}
+                    }
+                }
+            } // end using
+            Image<Bgr, Byte> triangleRectangleImage = bwr_image;
+
+
+
+            string str = "Triangle : ";
+            string trixyz = "";
+            string ctri = "";
+            //string btri = "";
+
+            foreach (Triangle2DF triangle in triangleList)
+            {
+                triangleRectangleImage.Draw(triangle, new Bgr(Color.Yellow), 2);
+
+                trixyz = triangle.V0.ToString();
+                trixyz += triangle.V1.ToString() + Environment.NewLine;
+                trixyz += triangle.V2.ToString();
+
+                ctri = triangle.Centeroid.ToString();
+            }
+
+            str += trixyz + Environment.NewLine;
+            str += "  Centeroid : ";
+            str += ctri + Environment.NewLine;
+            //str += "Box Center : ";
+
+            dispStr(label3, str);
+
+            imageBox1.Image = triangleRectangleImage;
+
+            //foreach (MCvBox2D box in boxList)
+            //{
+            //    triangleRectangleImage.Draw(box, new Bgr(Color.DarkOrange), 2);
+            //    btri = box.center.ToString() + Environment.NewLine;
+            //}
+
             if (s == State.enabled)
             {
 
@@ -163,7 +260,7 @@ namespace StopAtWhiteUR1
                     serPort.Write("S");//sends S to atmel 
                 }  
                 //Stop at red
-                if (percent_red > 5)
+                if (triangleList.Count != 0)
                 {
                     dispStr(label2, "" + Stop.ToString());
                     serPort.Write("X");
